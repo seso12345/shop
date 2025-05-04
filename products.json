@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "name": "مقص",
+      "price": 40,
+      "oldPrice": 45,
+      "desc": "مقص معدنى",
+      "image": "photo/مقص.png",
+      "badge": "الأكثر مبيعاً",
+      "category": "best"
+    },
+    {
+      "id": 2,
+      "name": "ألة حاسبة EATES",
+      "price": 500,
+      "desc": "ألة حاسبة علمية تقليد",
+      "image": "photo/ألة حاسبة 500.png",
+      "category": "new"
+    }
+  ]
