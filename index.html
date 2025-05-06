@@ -37,10 +37,12 @@
         
         /* شريط الأخبار */
         .news-bar {
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
-            padding: 10px 0;
+            padding: 12px 0;
             overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
         }
         
         .news-container {
@@ -58,6 +60,10 @@
             gap: 10px;
             font-weight: bold;
             white-space: nowrap;
+            background-color: rgba(0,0,0,0.2);
+            padding: 5px 15px;
+            border-radius: 30px;
+            animation: pulse 2s infinite;
         }
         
         .news-content {
@@ -73,6 +79,8 @@
             text-align: center;
             animation: scrollNews 15s infinite;
             opacity: 0;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
         .news-item:nth-child(1) { animation-delay: 0s; }
@@ -80,11 +88,11 @@
         .news-item:nth-child(3) { animation-delay: 10s; }
         
         @keyframes scrollNews {
-            0% { opacity: 0; transform: translateY(100%); }
-            10% { opacity: 1; transform: translateY(0); }
-            30% { opacity: 1; transform: translateY(0); }
-            40% { opacity: 0; transform: translateY(-100%); }
-            100% { opacity: 0; transform: translateY(-100%); }
+            0% { opacity: 0; transform: translateX(100%); }
+            10% { opacity: 1; transform: translateX(0); }
+            30% { opacity: 1; transform: translateX(0); }
+            40% { opacity: 0; transform: translateX(-100%); }
+            100% { opacity: 0; transform: translateX(-100%); }
         }
 
         /* الشريط العلوي */
@@ -597,7 +605,7 @@
         
         /* قسم العروض */
         .offers-section {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, #3498db, #2c3e50);
             padding: 80px 0;
             color: white;
             position: relative;
@@ -1922,21 +1930,6 @@
         </div>
     </div>
     
-    <!-- شريط الأخبار -->
-    <section class="news-bar">
-        <div class="news-container">
-            <div class="news-title">
-                <i class="fas fa-bullhorn"></i>
-                <span>أخبار وعروض المكتبة</span>
-            </div>
-            <div class="news-content">
-                <div class="news-item">عرض خاص اليوم فقط: خصم 20% على جميع الأدوات المكتبية</div>
-                <div class="news-item">وصول تشكيلة جديدة من الألوان الخشبية والمائية</div>
-                <div class="news-item">مسابقة الرسم الشهرية - جائزة قيمة للفائزين</div>
-            </div>
-        </div>
-    </section>
-    
     <!-- الهيدر -->
     <header>
         <div class="header-container">
@@ -1968,6 +1961,21 @@
             </div>
         </div>
     </header>
+    
+    <!-- شريط الأخبار -->
+    <section class="news-bar">
+        <div class="news-container">
+            <div class="news-title">
+                <i class="fas fa-bullhorn"></i>
+                <span>أخبار وعروض المكتبة</span>
+            </div>
+            <div class="news-content">
+                <div class="news-item">عرض خاص اليوم فقط: خصم 20% على جميع الأدوات المكتبية</div>
+                <div class="news-item">وصول تشكيلة جديدة من الألوان الخشبية والمائية</div>
+                <div class="news-item">مسابقة الرسم الشهرية - جائزة قيمة للفائزين</div>
+            </div>
+        </div>
+    </section>
     
     <!-- البانر الرئيسي -->
     <section class="hero">
@@ -2388,12 +2396,68 @@
 {
     id: 9,
     name: "برجل",
-    price:20,
+    price:30,
     desc: "برجل سنون ",
     image: "photo/برجل كرتونة.jpeg",
     category: "best"
 },
-  
+{
+    id: 10,
+    name: "مقص أطفال",
+    price:15,
+    desc: "مقص أمن للأطفال  ",
+    image: "photo/مقص أطفال.jpeg",
+    category: "best"
+},
+{
+    id: 11,
+    name: "جليتر لميع ",
+    price:10,
+    desc: " جليتر لميع   ",
+    image: "photo/جليتر لميع.jpeg",
+    category: "best"
+},
+{
+    id: 12,
+    name: "مسطرة معدن  ",
+    price:20,
+    desc: "  مسطرة معدن 30 سم   ",
+    image: "photo/مسطرة معدن.jpeg",
+    category: "best"
+},
+{
+    id: 13,
+    name: "قلم رصاص سنون 0.70 ",
+    price:20,
+    desc: "  قلم رصاص سنون 0.70    ",
+    image: "photo/قلم سنون0.7.jpeg",
+    category: "best"
+},
+{
+    id: 14,
+    name: "   قلم جاف 4 لون. ",
+    price:25,
+    desc: "  قلم جلف 4 لون شفاف",
+    image: "photo/قلم جاف 4 لون .jpeg",
+    category: "best"
+},
+{
+    id: 15,
+    name: "   قلم جاف 4 لون. ",
+    price:25,
+    desc: " قلم جلف 4 لون أسود",
+    image: "photo/قلم جاف 4 لون أسود.jpeg",
+    category: "best"
+},
+{
+    id: 16,
+    name: "   قلم جاف 4 لون. ",
+    price:25,
+    desc: " قلم جلف 4 لون مشكل",
+    image: "photo/قلم جاف4 لون مشكل.jpeg",
+    category: "best"
+},
+      
         ];
 
         // دالة لعرض المنتجات
