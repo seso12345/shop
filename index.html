@@ -29,7 +29,7 @@
         
         body {
             font-family: 'Tajawal', Arial, sans-serif;
-            background-color: var(--light-color);
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
             color: var(--dark-color);
             line-height: 1.6;
             overflow-x: hidden;
@@ -148,7 +148,12 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            transition: var(--transition);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
+            box-shadow: none;
         }
         
         .header-container {
@@ -313,6 +318,7 @@
             background-image: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             height: 80vh;
             min-height: 500px;
             display: flex;
@@ -454,7 +460,7 @@
         
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
         
@@ -463,18 +469,19 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--box-shadow);
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             transform-style: preserve-3d;
             perspective: 1000px;
             cursor: pointer;
             opacity: 0;
             transform: translateY(30px);
+            border: 1px solid rgba(0,0,0,0.1);
         }
         
         .product-card:hover {
-            transform: translateY(-10px) rotateY(5deg);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.08);
         }
         
         .product-badge {
@@ -492,9 +499,10 @@
         }
         
         .product-image {
-            height: 250px;
+            height: 280px;
             overflow: hidden;
             position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         
         .product-image img {
@@ -510,7 +518,8 @@
         }
         
         .product-info {
-            padding: 25px;
+            padding: 20px;
+            background-color: white;
         }
         
         .product-title {
@@ -555,6 +564,16 @@
             display: flex;
             justify-content: space-between;
             gap: 10px;
+        }
+        
+        @media (max-width: 576px) {
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .add-to-cart, .whatsapp-order {
+                width: 100%;
+            }
         }
         
         .add-to-cart {
@@ -1171,6 +1190,14 @@
             
             .section-title h2 {
                 font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .product-image {
+                height: 200px;
             }
         }
         
@@ -2326,138 +2353,137 @@
     <script>
         // بيانات المنتجات
         let products = [
-        {
-    id: 1,
-    name: "قلم هايلايتر",
-    price: 30,
-    desc: "قلم هايلايتر جودة عالية ",
-    image: "photo/قلم هايلايتر .jpg",
-    badge: "الأكثر مبيعاً",
-    category: "best"
-},
-{
-    id: 2,
-    name: "علبة أدوات هندسية",
-    price: 45,
-    desc: "علبة أدوات هندسية 7 قطع ",
-    image: "photo/علبة أدوات هندسية .jpeg",
-    badge: "جديد",
-    category: "new"
-},
-{
-    id: 3,
-    name: "علبة أدوات هندسية",
-    price: 45,
-    desc: "علبة أدوات هندسية 7 قطع .",
-    image: "photo/علبة أدوات هندسية 2.jpeg",
-    category: "best"
-},
-{
-    id: 4,
-    name: "علبة أدوات هندسية compass ",
-    price: 115,
-    desc: "علبة أدوات هندسية جودة عالية.",
-    image: "photo/علبة أدوات هندسية115.jpeg",
-    badge: "عرض خاص",
-    category: "offer"
-},
-{
-    id: 5,
-    name: "علبة أدوات هندسية",
-    price: 115,
-    desc: "علبة أدوات هندسية عالية الجودة",
-    image: "photo/علبة أدواات هندسية 115.jpeg",
-    category: "best"
-},
-{
-    id: 6,
-    name: "علبة أدوات هندسية بلاستيك ",
-    price:45,
-    desc: "علبة أدوات هندسية عالية الجودة",
-    image: "photo/علبة أدوات هندسة بلاستيك.jpeg",
-    category: "best"
-},
-{
-    id: 7,
-    name: "علبة ادوات هندسية مارشال",
-    price:45,
-    desc: "علبة أدوات  عالية الجودة",
-    image: "photo/علبة أدوات هندسية مارشال .jpeg",
-    category: "best"
-},
-{
-    id: 8,
-    name: "علبة ادوات هندسية عادية ",
-    price:20,
-    desc: "علبة أدوات  عالية الجودة",
-    image: "photo/أدوات هندسية .jpeg",
-    category: "best"
-},
-{
-    id: 9,
-    name: "برجل",
-    price:30,
-    desc: "برجل سنون ",
-    image: "photo/برجل كرتونة.jpeg",
-    category: "best"
-},
-{
-    id: 10,
-    name: "مقص أطفال",
-    price:15,
-    desc: "مقص أمن للأطفال  ",
-    image: "photo/مقص أطفال.jpeg",
-    category: "best"
-},
-{
-    id: 11,
-    name: "جليتر لميع ",
-    price:10,
-    desc: " جليتر لميع   ",
-    image: "photo/جليتر لميع.jpeg",
-    category: "best"
-},
-{
-    id: 12,
-    name: "مسطرة معدن  ",
-    price:20,
-    desc: "  مسطرة معدن 30 سم   ",
-    image: "photo/مسطرة معدن.jpeg",
-    category: "best"
-},
-{
-    id: 13,
-    name: "قلم رصاص سنون 0.70 ",
-    price:20,
-    desc: "  قلم رصاص سنون 0.70    ",
-    image: "photo/قلم سنون0.7.jpeg",
-    category: "best"
-},
-{
-    id: 14,
-    name: "   قلم جاف 4 لون. ",
-    price:25,
-    desc: "  قلم جلف 4 لون شفاف",
-    image: "photo/قلم جاف 4 لون .jpeg",
-    category: "best"
-},
-{
-    id: 15,
-    name: "   قلم جاف 4 لون. ",
-    price:25,
-    desc: " قلم جلف 4 لون أسود",
-    image: "photo/قلم جاف 4 لون أسود.jpeg",
-    category: "best"
-},
-{
-    id: 16,
-    name: "   قلم جاف 4 لون. ",
-    price:25,
-    desc: " قلم جلف 4 لون مشكل",
-    image: "photo/قلم جاف4 لون مشكل.jpeg",
-    category: "best"
-},
-      
+            {
+                id: 1,
+                name: "قلم هايلايتر",
+                price: 30,
+                desc: "قلم هايلايتر جودة عالية ",
+                image: "photo/قلم هايلايتر .jpg",
+                badge: "الأكثر مبيعاً",
+                category: "best"
+            },
+            {
+                id: 2,
+                name: "علبة أدوات هندسية",
+                price: 45,
+                desc: "علبة أدوات هندسية 7 قطع ",
+                image: "photo/علبة أدوات هندسية .jpeg",
+                badge: "جديد",
+                category: "new"
+            },
+            {
+                id: 3,
+                name: "علبة أدوات هندسية",
+                price: 45,
+                desc: "علبة أدوات هندسية 7 قطع .",
+                image: "photo/علبة أدوات هندسية 2.jpeg",
+                category: "best"
+            },
+            {
+                id: 4,
+                name: "علبة أدوات هندسية compass ",
+                price: 115,
+                desc: "علبة أدوات هندسية جودة عالية.",
+                image: "photo/علبة أدوات هندسية115.jpeg",
+                badge: "عرض خاص",
+                category: "offer"
+            },
+            {
+                id: 5,
+                name: "علبة أدوات هندسية",
+                price: 115,
+                desc: "علبة أدوات هندسية عالية الجودة",
+                image: "photo/علبة أدواات هندسية 115.jpeg",
+                category: "best"
+            },
+            {
+                id: 6,
+                name: "علبة أدوات هندسية بلاستيك ",
+                price:45,
+                desc: "علبة أدوات هندسية عالية الجودة",
+                image: "photo/علبة أدوات هندسة بلاستيك.jpeg",
+                category: "best"
+            },
+            {
+                id: 7,
+                name: "علبة ادوات هندسية مارشال",
+                price:45,
+                desc: "علبة أدوات  عالية الجودة",
+                image: "photo/علبة أدوات هندسية مارشال .jpeg",
+                category: "best"
+            },
+            {
+                id: 8,
+                name: "علبة ادوات هندسية عادية ",
+                price:20,
+                desc: "علبة أدوات  عالية الجودة",
+                image: "photo/أدوات هندسية .jpeg",
+                category: "best"
+            },
+            {
+                id: 9,
+                name: "برجل",
+                price:30,
+                desc: "برجل سنون ",
+                image: "photo/برجل كرتونة.jpeg",
+                category: "best"
+            },
+            {
+                id: 10,
+                name: "مقص أطفال",
+                price:15,
+                desc: "مقص أمن للأطفال  ",
+                image: "photo/مقص أطفال.jpeg",
+                category: "best"
+            },
+            {
+                id: 11,
+                name: "جليتر لميع ",
+                price:10,
+                desc: " جليتر لميع   ",
+                image: "photo/جليتر لميع.jpeg",
+                category: "best"
+            },
+            {
+                id: 12,
+                name: "مسطرة معدن  ",
+                price:20,
+                desc: "  مسطرة معدن 30 سم   ",
+                image: "photo/مسطرة معدن.jpeg",
+                category: "best"
+            },
+            {
+                id: 13,
+                name: "قلم رصاص سنون 0.70 ",
+                price:20,
+                desc: "  قلم رصاص سنون 0.70    ",
+                image: "photo/قلم سنون0.7.jpeg",
+                category: "best"
+            },
+            {
+                id: 14,
+                name: "   قلم جاف 4 لون. ",
+                price:25,
+                desc: "  قلم جلف 4 لون شفاف",
+                image: "photo/قلم جاف 4 لون .jpeg",
+                category: "best"
+            },
+            {
+                id: 15,
+                name: "   قلم جاف 4 لون. ",
+                price:25,
+                desc: " قلم جلف 4 لون أسود",
+                image: "photo/قلم جاف 4 لون أسود.jpeg",
+                category: "best"
+            },
+            {
+                id: 16,
+                name: "   قلم جاف 4 لون. ",
+                price:25,
+                desc: " قلم جلف 4 لون مشكل",
+                image: "photo/قلم جاف4 لون مشكل.jpeg",
+                category: "best"
+            }
         ];
 
         // دالة لعرض المنتجات
@@ -2510,8 +2536,7 @@
             document.querySelectorAll('.product-card').forEach(card => {
                 card.addEventListener('click', function(e) {
                     // منع فتح الشاشة المصغرة عند النقر على الأزرار
-                    if (e.target.closest('.add-to-cart')) return;
-                    if (e.target.closest('.whatsapp-order')) return;
+                    if (e.target.closest('.add-to-cart') || e.target.closest('.whatsapp-order')) return;
                     
                     const productId = parseInt(this.getAttribute('data-id'));
                     const product = products.find(p => p.id === productId);
@@ -2519,6 +2544,21 @@
                     if (product) {
                         showProductModal(product);
                     }
+                });
+            });
+            
+            // إضافة حدث النقر على أزرار "أضف للسلة"
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    addToCart(productId);
+                    
+                    // تأثيرات خاصة
+                    createSpecialEffect('🛒', '#3498db');
+                    createSpecialEffect('➕', '#2ecc71');
+                    
+                    showNotification('تمت إضافة المنتج إلى السلة');
                 });
             });
             
@@ -2896,6 +2936,13 @@
                 const product = products.find(p => p.id === productId);
                 
                 if (product) {
+                    // تأثير اهتزاز للسلة
+                    const cartButton = document.getElementById('cartButton');
+                    cartButton.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        cartButton.style.transform = 'scale(1)';
+                    }, 300);
+                    
                     const existingItem = cart.find(item => item.id === productId);
                     
                     if (existingItem) {
@@ -2996,22 +3043,6 @@
             overlay.addEventListener('click', function() {
                 cartSidebar.classList.remove('active');
                 overlay.classList.remove('active');
-            });
-            
-            // إضافة منتج للسلة
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
-                    const button = e.target.classList.contains('add-to-cart') ? e.target : e.target.closest('.add-to-cart');
-                    const productId = parseInt(button.getAttribute('data-id'));
-                    
-                    addToCart(productId);
-                    
-                    // تأثيرات خاصة
-                    createSpecialEffect('🛒', '#3498db');
-                    createSpecialEffect('➕', '#2ecc71');
-                    
-                    showNotification('تمت إضافة المنتج إلى السلة');
-                }
             });
             
             // إضافة حدث لزر إتمام الشراء
@@ -3217,6 +3248,31 @@
             });
         }
         
+        // دالة لإخفاء الهيدر عند التمرير
+        function setupHeaderScroll() {
+            const header = document.querySelector('header');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll <= 0) {
+                    header.classList.remove('hidden');
+                    return;
+                }
+                
+                if (currentScroll > lastScroll && !header.classList.contains('hidden')) {
+                    // التمرير لأسفل
+                    header.classList.add('hidden');
+                } else if (currentScroll < lastScroll && header.classList.contains('hidden')) {
+                    // التمرير لأعلى
+                    header.classList.remove('hidden');
+                }
+                
+                lastScroll = currentScroll;
+            });
+        }
+        
         // تهيئة الصفحة عند التحميل
         document.addEventListener('DOMContentLoaded', function() {
             hideLoader();
@@ -3227,6 +3283,7 @@
             setupBackToTop();
             setupScrollAnimations();
             setupOffers();
+            setupHeaderScroll();
             
             // إعداد البحث والتصفية
             document.getElementById('searchButton').addEventListener('click', searchProducts);
